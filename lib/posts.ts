@@ -1,0 +1,1 @@
+export function getAllPosts(){return []} export function getPostBySlug(){return null}
