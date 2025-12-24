@@ -1,4 +1,12 @@
+// app/layout.tsx
 import "./globals.css";
+import type { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "HitoriBIZ Blog",
+  description: "ひとりビジネスのための実践ブログ｜AI × デジタル活用",
+};
 
 export default function RootLayout({
   children,
@@ -7,24 +15,44 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body>
-        {/* ✅ 新しいヘッダーここから */}
-        <header style={{
-          display: 'flex',
-          alignItems: 'center',
-          padding: '1rem',
-          borderBottom: '1px solid #ccc',
-          backgroundColor: '#f9f9f9'
-        }}>
-          {/* ロゴ画像がある場合は下記imgタグを使ってください */}
-          {/* <img src="/logo.png" alt="HitoriBIZ ロゴ" style={{ height: '40px', marginRight: '1rem' }} /> */}
+      <body className="min-h-screen bg-slate-50 text-slate-900">
+        {/* ===== Header ===== */}
+        <header className="border-b bg-white/90 backdrop-blur">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+            {/* ロゴ / サイト名 */}
+            <Link href="/" className="text-lg font-bold tracking-wide">
+              HitoriBIZ
+            </Link>
 
-          {/* 今は文字で表示 */}
-          <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>HitoriBIZ Blog</span>
+            {/* ナビゲーション */}
+            <nav className="flex gap-6 text-sm font-medium">
+              <Link href="/" className="hover:text-slate-600">
+                Home
+              </Link>
+              <Link href="/blog" className="hover:text-slate-600">
+                Blog
+              </Link>
+              <Link href="/works" className="hover:text-slate-600">
+                Works
+              </Link>
+              <Link href="/contact" className="hover:text-slate-600">
+                Contact
+              </Link>
+            </nav>
+          </div>
         </header>
-        {/* ✅ 新しいヘッダーここまで */}
 
-        <main className="mx-auto max-w-5xl px-4">{children}</main>
+        {/* ===== Main ===== */}
+        <main className="mx-auto w-full max-w-5xl px-4 py-8">
+          {children}
+        </main>
+
+        {/* ===== Footer ===== */}
+        <footer className="mt-auto border-t bg-white">
+          <div className="mx-auto max-w-5xl px-4 py-6 text-center text-xs text-slate-500">
+            © {new Date().getFullYear()} HitoriBIZ. All rights reserved.
+          </div>
+        </footer>
       </body>
     </html>
   );
