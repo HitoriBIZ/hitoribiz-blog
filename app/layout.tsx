@@ -32,9 +32,6 @@ export default function RootLayout({
               <Link href="/blog" className="hover:text-slate-600">
                 Blog
               </Link>
-              <Link href="/works" className="hover:text-slate-600">
-                Works
-              </Link>
               <Link href="/contact" className="hover:text-slate-600">
                 Contact
               </Link>
