@@ -1,11 +1,4 @@
-"use client";
-
-import { useState } from "react";
-
 export default function ContactPage() {
-  const [sending, setSending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
       <h1 className="text-2xl font-bold text-slate-900">お問い合わせ</h1>
@@ -17,22 +10,19 @@ export default function ContactPage() {
         action="https://submit-form.com/UWNAVrVsy"
         method="POST"
         className="mt-8 space-y-4"
-        onSubmit={() => setSending(true)}
       >
-        {/* ✅ 送信後の遷移先（本番URL・localhost禁止） */}
+        {/* ✅ 送信後の遷移先（本番URL） */}
         <input
           type="hidden"
           name="_redirect"
           value="https://hitoribiz-blog-prod.vercel.app/contact/thanks"
         />
 
-        {/* スパム対策（Formspark推奨） */}
+        {/* ✅ スパム対策（honeypot） */}
         <input type="text" name="_honey" style={{ display: "none" }} />
 
         <div>
-          <label className="text-sm font-medium text-slate-700">
-            お名前
-          </label>
+          <label className="text-sm font-medium text-slate-700">お名前</label>
           <input
             name="name"
             required
@@ -64,18 +54,11 @@ export default function ContactPage() {
           />
         </div>
 
-        {error && (
-          <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
-            {error}
-          </p>
-        )}
-
         <button
           type="submit"
-          disabled={sending}
-          className="rounded-full bg-slate-900 px-6 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-60"
+          className="rounded-full bg-slate-900 px-6 py-2 text-sm font-medium text-white hover:bg-slate-800"
         >
-          {sending ? "送信中…" : "送信する"}
+          送信する
         </button>
       </form>
     </main>
