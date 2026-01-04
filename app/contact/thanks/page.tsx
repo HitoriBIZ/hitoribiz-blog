@@ -7,20 +7,25 @@ export default function ThanksPage() {
         <h1 className="text-3xl font-bold tracking-tight">
           お問い合わせありがとうございました。
         </h1>
+
         <p className="mt-4 text-sm text-slate-600">
           内容を確認のうえ、通常1〜2営業日以内にご連絡いたします。
           <br />
           しばらくお待ちください。
         </p>
+
         <div className="mt-8 flex justify-center gap-4">
+          {/* ✅ 迷子防止：本番URLへ固定 */}
           <Link
-  href="/"
-  className="rounded-full bg-sky-700 px-6 py-2 text-sm font-semibold text-white hover:bg-sky-600"
->
-  トップページへ戻る
-</Link>
+            href="https://hitoribiz-blog-prod.vercel.app/"
+            className="rounded-full bg-sky-700 px-6 py-2 text-sm font-semibold text-white hover:bg-sky-600"
+          >
+            トップページへ戻る
+          </Link>
+
+          {/* ✅ こちらも本番URLで固定（さらに安全） */}
           <Link
-            href="/contact"
+            href="https://hitoribiz-blog-prod.vercel.app/contact"
             className="text-sm font-semibold text-sky-700 hover:underline"
           >
             もう一度問い合わせる
