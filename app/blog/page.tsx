@@ -8,17 +8,40 @@ type Post = {
   title: string;
   date: string;
   excerpt: string;
-  // どちらでも動くように両対応（mdのフロントマターが混在していてもOK）
+  // mdのフロントマター混在対策
   coverImage?: string;
   hero?: string;
 };
 
 export default function BlogPage() {
-  const posts = getAllPosts() as Post[];
+  /**
+   * 固定記事（序章・第1話）
+   * MD管理に移行したら、この配列を削除するだけでOK
+   */
+  const staticPosts: Post[] = [
+    {
+      slug: "2026-01-first-post",
+      title: "ロゴマークと名刺づくり｜HitoriBIZはここから始まりました",
+      date: "2026-01-22",
+      excerpt:
+        "定年退職をきっかけに始まった『ひとりビジネス』。でも実は、たくさんのAIスタッフに囲まれて進めています。まずはロゴと名刺づくりから。",
+      coverImage: "/images/blog/2026-01-first-post/logo.png",
+    },
+  ];
+
+  /**
+   * 既存のMD投稿
+   */
+  const mdPosts = getAllPosts() as Post[];
+
+  /**
+   * 表示用：固定記事 → MD記事 の順
+   */
+  const posts = [...staticPosts, ...mdPosts];
 
   return (
     <div className="mx-auto max-w-5xl px-4 pb-16">
-      {/* Crown / mark */}
+      {/* ===== Crown / mark ===== */}
       <div className="pt-10 flex justify-center">
         <div className="relative h-14 w-14 sm:h-16 sm:w-16">
           <Image
@@ -31,7 +54,7 @@ export default function BlogPage() {
         </div>
       </div>
 
-      {/* Hero */}
+      {/* ===== Hero ===== */}
       <section className="mt-8">
         <div className="relative h-[260px] w-full overflow-hidden rounded-2xl border bg-slate-100">
           <Image
@@ -44,7 +67,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Profile card（Heroの下） */}
+      {/* ===== Profile card ===== */}
       <section className="relative z-10 mx-auto mt-8">
         <div className="rounded-2xl border bg-white p-5 shadow-sm flex flex-col gap-4 sm:flex-row sm:items-center">
           <div className="flex items-center gap-4">
@@ -67,7 +90,7 @@ export default function BlogPage() {
             </div>
           </div>
 
-          {/* 右側ボタン（実績を見るは削除済み） */}
+          {/* 右側ボタン */}
           <div className="sm:ml-auto">
             <Link
               href="/contact"
@@ -79,17 +102,18 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Posts */}
+      {/* ===== Posts ===== */}
       <section className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
         {posts.map((post) => {
-          const cover = post.coverImage || post.hero; // 混在対策
+          const cover = post.coverImage || post.hero;
+
           return (
             <article
               key={post.slug}
               className="overflow-hidden rounded-2xl border bg-white shadow-sm"
             >
-              {/* 画像がある時だけ表示 */}
-              {cover ? (
+              {/* カバー画像 */}
+              {cover && (
                 <div className="relative h-44 w-full bg-slate-100">
                   <Image
                     src={cover}
@@ -99,13 +123,15 @@ export default function BlogPage() {
                     sizes="(min-width: 768px) 50vw, 100vw"
                   />
                 </div>
-              ) : null}
+              )}
 
               <div className="p-6">
                 <p className="text-xs text-slate-500">{post.date}</p>
+
                 <h2 className="mt-2 text-lg font-bold text-slate-900">
                   {post.title}
                 </h2>
+
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   {post.excerpt}
                 </p>
