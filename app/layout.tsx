@@ -25,24 +25,14 @@ export default function RootLayout({
             </Link>
 
             {/* ナビゲーション */}
-            <nav className="flex gap-6 text-sm font-medium">
-              <Link href="/" className="hover:text-slate-600">
-                Home
-              </Link>
-              <Link href="/blog" className="hover:text-slate-600">
-                Blog
-              </Link>
-              <Link href="/contact" className="hover:text-slate-600">
-                Contact
-              </Link>
-            </nav>
+<nav className="flex gap-6 text-sm font-medium">
+  <span className="text-red-600 font-bold">TEST-NAV</span>
+</nav>
           </div>
         </header>
 
         {/* ===== Main ===== */}
-        <main className="mx-auto w-full max-w-5xl px-4 py-8">
-          {children}
-        </main>
+        <main className="mx-auto w-full max-w-5xl px-4 py-8">{children}</main>
 
         {/* ===== Footer ===== */}
         <footer className="mt-auto border-t bg-white">
