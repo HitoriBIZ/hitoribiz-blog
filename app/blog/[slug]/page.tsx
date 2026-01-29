@@ -15,8 +15,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
       <div className="mb-6">
-        <Link href="/blog" className="text-sm text-slate-600 hover:text-slate-900">
-          ← Blogへ戻る
+        <Link href="/" className="text-sm text-slate-600 hover:text-slate-900">
+          ← Homeへ戻る
         </Link>
       </div>
 
