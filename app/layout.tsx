@@ -26,8 +26,14 @@ export default function RootLayout({
 
             {/* ナビゲーション */}
 <nav className="flex gap-6 text-sm font-medium">
-  <span className="text-red-600 font-bold">TEST-NAV</span>
+  <Link href="/" className="hover:text-slate-600">
+    Home
+  </Link>
+  <Link href="/contact" className="hover:text-slate-600">
+    Contact
+  </Link>
 </nav>
+
           </div>
         </header>
 
